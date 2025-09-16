@@ -4,10 +4,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist/app",
-    "types": [],
-    "moduleResolution": "bundler",
     "target": "ES2022",
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "moduleResolution": "bundler",
+    "types": []
   },
   "include": [
     "src/**/*.ts"

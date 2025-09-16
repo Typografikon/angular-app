@@ -1,12 +1,12 @@
 #!/bin/bash
 
-rm -rfv dist &&
+rm -rfv .angular dist src/message-api &&
 npm install &&
-ng build &&
-npm cache clean --force &&
-npm pack --pack-destination dist &&
+npm run-script build &&
 npm install --no-save --no-fund ./dist/angular-app-0.0.1.tgz &&
 echo "OK" ||
 echo "ER" ;
+
+echo "Now run with: 'ng serve'";
 
 #eof

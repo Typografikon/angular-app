@@ -1,13 +1,18 @@
-import { Component, signal } from '@angular/core';
+import {Component, ChangeDetectionStrategy, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-// import { MyLib, MyComponent  } from 'my-lib';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet /*, MyLib, MyComponent */],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+    selector: 'app-root',
+    standalone: true,
+    imports: [RouterOutlet ],
+    templateUrl: './app.html',
+    styleUrl: './app.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [],
 })
 export class App {
-  protected readonly title = signal('my-app');
+    protected readonly title = signal('angular-app');
+    readonly description = signal('Description...');
+    constructor() {
+    }
 }

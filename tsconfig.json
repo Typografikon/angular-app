@@ -7,11 +7,6 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "paths": {
-      "my-lib": [
-        "./dist/my-lib"
-      ]
-    },
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
@@ -20,6 +15,8 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+    "moduleResolution": "bundler",
+    "paths": {}
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -29,18 +26,5 @@
     "strictTemplates": true
   },
   "files": [],
-  "references": [
-    {
-      "path": "./projects/my-lib/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/my-lib/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/my-app/tsconfig.app.json"
-    },
-    {
-      "path": "./projects/my-app/tsconfig.spec.json"
-    }
-  ]
+  "references": []
 }
