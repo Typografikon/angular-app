@@ -1,5 +1,7 @@
-import {Component, ChangeDetectionStrategy, signal} from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import {DefaultService, Message} from 'message-api';
 
 @Component({
     selector: 'app-root',
@@ -11,8 +13,10 @@ import { RouterOutlet } from '@angular/router';
     providers: [],
 })
 export class App {
+
     protected readonly title = signal('angular-app');
-    readonly description = signal('Description...');
-    constructor() {
-    }
+    protected readonly description = signal('Description...');
+    protected readonly api = inject(DefaultService);
+    protected readonly message = toSignal(this.api.messageGet(), { initialValue: {} as Message });
+
 }
