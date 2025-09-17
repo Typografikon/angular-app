@@ -1,13 +1,17 @@
 {
   "name": "angular-app",
   "version": "0.0.1",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development"
-  },
   "private": true,
+  "scripts": {
+    "clean": "rm -rfv package-lock.json node_modules .angular dist src/message-api",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "start": "ng serve"
+  },
+  "engines": {
+    "node": "22.11.0",
+    "npm": "10.9.0"
+  },
   "dependencies": {
     "@angular/common": "latest",
     "@angular/compiler": "latest",
