@@ -9,8 +9,8 @@
     "start": "ng serve"
   },
   "engines": {
-    "node": "22.11.0",
-    "npm": "10.9.0"
+    "node": ">=22.12.0 <23",
+    "npm": ">=10.9.0 <11"
   },
   "dependencies": {
     "@angular/common": "latest",
@@ -19,7 +19,7 @@
     "@angular/forms": "latest",
     "@angular/platform-browser": "latest",
     "@angular/router": "latest",
-    "message-api": "file:/home/ondrej/Workspace/Workspacejs/angular-api/dist/message-api-0.0.1.tgz",
+    "message-api": "../angular-api/dist/message-api-0.0.1.tgz",
     "rxjs": "latest",
     "tslib": "latest",
     "zone.js": "latest"
