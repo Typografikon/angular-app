@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "clean": "rm -rfv package-lock.json node_modules .angular dist src/message-api",
+    "clean": "rm -rfv package-lock.json node_modules .angular dist src/message-api && npm cache clean --force",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "start": "ng serve"
@@ -13,29 +13,26 @@
     "npm": ">=10.9.0 <11"
   },
   "dependencies": {
-    "@angular/common": "latest",
-    "@angular/compiler": "latest",
-    "@angular/core": "latest",
-    "@angular/forms": "latest",
-    "@angular/platform-browser": "latest",
-    "@angular/router": "latest",
+    "@angular/core": "20.3.0",
+    "@angular/common": "20.3.0",
+    "@angular/compiler": "20.3.0",
+    "@angular/forms": "20.3.0",
+    "@angular/platform-browser": "20.3.0",
+    "@angular/platform-browser-dynamic": "20.3.0",
+    "@angular/router": "20.3.0",
     "message-api": "../angular-api/dist/message-api-0.0.1.tgz",
-    "rxjs": "latest",
-    "tslib": "latest",
-    "zone.js": "latest"
+    "codebook-rest-api-v2": "../angular-rest/dist/codebook-rest-api-v2-0.0.1.tgz",
+    "rxjs": "7.8.1",
+    "zone.js": "0.15.0",
+    "tslib": "2.6.0"
+  },
+  "peerDependencies": {
   },
   "devDependencies": {
-    "@angular/cli": "latest",
-    "@angular/build": "latest",
-    "@angular/compiler-cli": "v",
-    "@types/jasmine": "latest",
-    "jasmine-core": "latest",
-    "karma": "latest",
-    "karma-chrome-launcher": "latest",
-    "karma-coverage": "latest",
-    "karma-jasmine": "latest",
-    "karma-jasmine-html-reporter": "latest",
-    "ng-packagr": "latest",
-    "typescript": "latest"
+    "@angular/cli": "20.3.0",
+    "@angular/build": "20.3.0",
+    "@angular/compiler-cli": "20.3.0",
+    "ng-packagr": "20.3.0",
+    "typescript": "5.8.3"
   }
 }
