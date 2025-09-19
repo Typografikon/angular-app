@@ -34,6 +34,34 @@ export class App {
         console.log('App component constructor...');
         console.log('1. Codebook:', this.codebook().codebook);
         // this.codebookApi.getCodebook("CB_DocType").forEach(v => console.log('2. Codebook:', v.codebook));
-        this.codebookApi.getCodebook("CB_DocType").subscribe(v => console.log('2. Codebook:', v.codebook));
+        this.codebookApi.getCodebook("CB_DocType").subscribe(v => console.log('2. Codebook:', v));
+        this.codebookApi.getCodebook(
+            "CB_DocType",
+            undefined, // codebookRequestVersion
+            undefined, // pagingAfterNumber
+            undefined, // pagingNumberOfEntries
+            undefined, // observe
+            false,     // reportProgress
+            {
+                httpHeaderAccept: 'application/json, application/x-msgpack',
+                context: undefined,
+                transferCache: undefined
+            }
+        ).subscribe(v => console.log('3. Codebook (requested json):', v));
+
+        this.codebookApi.getCodebook("CB_DocType").subscribe(v => {
+            if (v instanceof Blob) {
+                v.text().then(text => {
+                    try {
+                        const json = JSON.parse(text);
+                        console.log('4. Codebook (parsed):', json);
+                    } catch (err) {
+                        console.error('JSON parse error:', err, text);
+                    }
+                });
+            } else {
+                console.log('4. Codebook (already parsed):', v);
+            }
+        });
     }
 }
