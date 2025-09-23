@@ -5,16 +5,20 @@ const fs = require('fs');
 
 const app  = express();
 const port = process.env.PORT || 8080;
+const jsonType = 'application/json; charset=utf-8';
 
 function serveJson(res, filePath) {
     let id = new Intl.DateTimeFormat('cs-CZ', { dateStyle: 'full', timeStyle: 'long' }).format(new Date());
     fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
+            console.error(`[${id}][ERROR] ${filePath}`);
             res.status(500).json({ error: 'file read error' });
             return;
+        } else {
+            console.info(`[${id}][SUCCESS] ${filePath} with ${jsonType}`);
+            res.type(jsonType).send(data);
+            return;
         }
-        console.log(`[${id}] ${filePath}`);
-        res.type('application/json; charset=utf-8').send(data);
     });
 }
 

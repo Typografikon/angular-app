@@ -4,9 +4,17 @@
             <h1>Hello, {{ title() }}!</h1>
             <em>{{ description() }}</em>
             <p>Congratulations! Your app is running.</p>
-            <pre>{{ message().text }} </pre>
-            <pre>{{ codebook().codebook }} </pre>
-
+            <!--
+            -->
+            <h2>Data loaded</h2>
+            <ul>
+                <li>Loaded message: <code>{{ message()?.id }}</code></li>
+                <li>Loaded codebook: <code>{{ codebook()?.codebook?.code }} v{{ codebook()?.codebook?.version }}</code></li>
+            </ul>
+            <h3>Message</h3>
+            <pre>{{ toString(message()) }}</pre>
+            <h3>Codebook</h3>
+            <pre>{{ toString(codebook()) }}</pre>
         </div>
         <div class="block">
             <router-outlet></router-outlet>

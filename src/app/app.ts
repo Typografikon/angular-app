@@ -8,7 +8,7 @@ import { shareReplay} from "rxjs";
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet ],
+    imports: [ RouterOutlet ],
     templateUrl: './app.html',
     styleUrl: './app.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,46 +22,46 @@ export class App {
     protected readonly messageApi  = inject(DefaultServiceMessage);
     protected readonly codebookApi = inject(DefaultServiceRest);
 
-    // Observable vytvořené jen jednou
-    private readonly message$ = this.messageApi.messageGet().pipe(shareReplay(1));
+    private readonly message$  = this.messageApi.messageGet().pipe(shareReplay(1));
     private readonly codebook$ = this.codebookApi.getCodebook("CB_DocType").pipe(shareReplay(1));
 
     // Signál vytvořený z jednoho Observable
-    protected readonly message  = toSignal(this.message$, { initialValue: {} as Message });
-    protected readonly codebook = toSignal(this.codebook$, { initialValue: {} as GetCodebookResponseGetCodebookResponse });
+    protected readonly message  = toSignal(this.message$);
+    protected readonly codebook = toSignal(this.codebook$); //
+    protected readonly toString = (val: any) => JSON.stringify(val);
 
     constructor() {
         console.log('App component constructor...');
-        console.log('1. Codebook:', this.codebook().codebook);
-        // this.codebookApi.getCodebook("CB_DocType").forEach(v => console.log('2. Codebook:', v.codebook));
-        this.codebookApi.getCodebook("CB_DocType").subscribe(v => console.log('2. Codebook:', v));
-        this.codebookApi.getCodebook(
-            "CB_DocType",
-            undefined, // codebookRequestVersion
-            undefined, // pagingAfterNumber
-            undefined, // pagingNumberOfEntries
-            undefined, // observe
-            false,     // reportProgress
-            {
-                httpHeaderAccept: 'application/json, application/x-msgpack',
-                context: undefined,
-                transferCache: undefined
-            }
-        ).subscribe(v => console.log('3. Codebook (requested json):', v));
 
+        // Message:
+        // console.warn('Message from signal:', this.message());
+        this.messageApi.messageGet().subscribe(v => console.warn('Message from subscribe:', v));
+
+        // Codebook:
+        // console.warn('Codebook from signal:', this.codebook()?.codebook);
+        this.codebookApi.getCodebook("CB_DocType").subscribe(v => console.warn('Codebook from subscribe:', v?.codebook));
+
+        /*
         this.codebookApi.getCodebook("CB_DocType").subscribe(v => {
             if (v instanceof Blob) {
                 v.text().then(text => {
+                    let parsed = undefined;
                     try {
-                        const json = JSON.parse(text);
-                        console.log('4. Codebook (parsed):', json);
+                        parsed = JSON.parse(text);
+                        console.log('Codebook from subscribe (Blob before parsed):', v);
+                        console.log('Codebook from subscribe (text before parsed):', text.substring(0, 100), '...');
+                        console.log('Codebook from subscribe (text when parsed):', parsed);
                     } catch (err) {
                         console.error('JSON parse error:', err, text);
                     }
+                    return parsed;
                 });
             } else {
-                console.log('4. Codebook (already parsed):', v);
+                console.log('Codebook from subscribe (not a Blob):', v);
             }
         });
+        */
+
     }
+
 }
